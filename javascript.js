@@ -1,74 +1,71 @@
-let octagon = document.querySelectorAll('#octagon');
-let h2 = document.querySelectorAll('.txt-element h2');
-let p = document.querySelectorAll('.txt-element p');
-let span = document.querySelectorAll('#octagon span');
-let toglbtn = document.querySelector('.toggle-content span');
-let togldiv = document.querySelector('.toggle-content');
-let insideContent = document.querySelector('.viewed-content');
-let txtAnimation = document.querySelector('.animated-txt');
+const togglebtn = document.querySelector('.toggle-content span');
+const togglediv = document.querySelector('.toggle-content');
+const insideContent = document.querySelector('.viewed-content');
+const txtAnimation = document.querySelector('.animated-txt');
+const octagon = document.querySelectorAll('#octagon');
+const h2 = document.querySelectorAll('.txt-element h2');
+const p = document.querySelectorAll('.txt-element p');
+const span = document.querySelectorAll('#octagon span');
+const txtArray = ['Clean', 'Powerful', '& Beautiful', 'Code'];
+let counter = 0;
+let count = 1;
 
-window.onload = function(){
-var duration = setInterval(textAnimation, 200);
-var count = 0;
 
-function textAnimation(e){
-	count++;
+window.onload = ()=> {
+setInterval( () => {
 	if(count == 1){
-	   txtAnimation.querySelector('.one').style.display = 'block';
-	}else if(count == 10){
-	   txtAnimation.querySelector('.two').style.display = 'block';
-	   txtAnimation.querySelector('.one').style.display = 'none';
-	}else if(count == 20){
-	   txtAnimation.querySelector('.three').style.display = 'block';
-	   txtAnimation.querySelector('.two').style.display = 'none';
-	}else if(count == 30){
-	   txtAnimation.querySelector('.four').style.display = 'block';
-	   txtAnimation.querySelector('.three').style.display = 'none';
-	}else if(count == 40){
-		clearInterval(duration);
+	   txtAnimation.textContent = txtArray[0];
+	}else if(count == 2){
+	   txtAnimation.textContent = txtArray[1];
+	}else if(count == 3){
+	   txtAnimation.textContent = txtArray[2];
+	}else if(count == 4){
+	   txtAnimation.textContent = txtArray[3];
+	}else if(count == 5){
+      count = 0;
 	}
-}
+	count++;
+
+}, 2000);
 }
 
-toglbtn.addEventListener('click', function(){
-	if(togldiv.style.width === '80%'){
-		togldiv.style.width = '20%';
-		togldiv.querySelector('span').style.background = 'linear-gradient(30deg, #0030b8, #022689)';
+togglebtn.addEventListener('click', ()=> {
+	if(togglediv.style.width === '80%'){
+		togglediv.style.width = '20%';
+		togglediv.querySelector('span').style.background = 'linear-gradient(30deg, #0030b8, #022689)';
 		insideContent.style.justifyContent = 'center';
 		insideContent.style.marginLeft = '28%';
 	}else{
-		togldiv.style.width = '80%';
-	    togldiv.querySelector('span').style.background = '#FF0C70';
+		togglediv.style.width = '80%';
+	    togglediv.querySelector('span').style.background = '#FF0C70';
 		insideContent.style.justifyContent = 'flex-start';
 		insideContent.style.marginLeft = '0%';
 	}
 })
 
-var counter = 0;
-window.addEventListener('scroll', function() {
-var position = this.scrollY;
-if(position >= 3400){
-var duration = setInterval(countIncreament, 1);
-function countIncreament(){
-    counter++;
-    if(counter < 1538){
-    document.querySelector('.blue-number').textContent = counter;
+window.addEventListener('scroll', ()=> {
+let position = this.scrollY;
+
+if(position > 3400){
+setInterval(() => {
+	if(counter < 1538){
+      document.querySelector('.blue-number').textContent = counter;
     }
     if(counter < 749){
-    document.querySelector('.aqua-number').textContent = counter;
+      document.querySelector('.aqua-number').textContent = counter;
     }
     if(counter < 1248){
-    document.querySelector('.pink-number').textContent = counter;
+      document.querySelector('.pink-number').textContent = counter;
     }
     if(counter < 937){
-    document.querySelector('.yellow-number').textContent = counter;
+      document.querySelector('.yellow-number').textContent = counter;
     }
-}
+}, 20);
 }
 });
 
-octagon.forEach(function(itm){
-	itm.addEventListener('click', function() {
+octagon.forEach(item =>{
+	item.addEventListener('click', ()=> {
 		for(let i = 0; i < span.length; i++){
 			span[i].style.backgroundColor = '#252839';
 		}
@@ -78,8 +75,8 @@ octagon.forEach(function(itm){
 		for(let i = 0; i < p.length; i++){
 			p[i].classList.remove('active');
 		}
-	  itm.firstElementChild.style.backgroundColor = '#10B6E3';
-	  itm.parentElement.querySelector('h2').classList.add('active');
-	  itm.parentElement.querySelector('p').classList.add('active');
+	  item.firstElementChild.style.backgroundColor = '#10B6E3';
+	  item.parentElement.querySelector('h2').classList.add('active');
+	  item.parentElement.querySelector('p').classList.add('active');
 	})
-})
+});
